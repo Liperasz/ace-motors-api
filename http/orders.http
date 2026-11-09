@@ -1,0 +1,43 @@
+### ================= CLIENTE =================
+
+### Finalizar compra do carrinho inteiro -> 201 + Location: /orders/{id}
+POST {{baseUrl}}/clients/2/orders
+Content-Type: application/json
+
+{
+  "addressId": 1
+}
+
+### Finalizar compra só de alguns itens do carrinho, com cupom
+POST {{baseUrl}}/clients/2/orders
+Content-Type: application/json
+
+{
+  "addressId": 1,
+  "couponCode": "ACE10",
+  "cartItemIds": [1, 2]
+}
+
+### Histórico de pedidos do cliente (filtros opcionais: status e período)
+GET {{baseUrl}}/clients/2/orders?status=&from=2026-11-01&to=2026-11-30&page=0&size=10
+
+### ================= ADMINISTRAÇÃO =================
+
+### Listar todos os pedidos (filtros opcionais: cliente, status e período)
+GET {{baseUrl}}/orders?clientId=&status=AWAITING_PAYMENT&from=2026-11-01&to=2026-11-30&sort=createdAt,desc
+
+### Detalhe do pedido (itens com o preço da época e endereço do momento da compra)
+GET {{baseUrl}}/orders/1
+
+### Mudar status (AWAITING_PAYMENT -> PAID|CANCELLED, PAID -> SHIPPED|CANCELLED, SHIPPED -> DELIVERED)
+PUT {{baseUrl}}/orders/1/status
+Content-Type: application/json
+
+{
+  "status": "SHIPPED",
+  "adminId": 1,
+  "notes": "Enviado pela transportadora"
+}
+
+### Histórico de status do pedido
+GET {{baseUrl}}/orders/1/status-history

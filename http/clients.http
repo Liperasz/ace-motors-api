@@ -1,0 +1,103 @@
+### Listar clientes com filtros opcionais e paginação
+GET {{baseUrl}}/clients?name=ana&email=&status=ACTIVE&page=0&size=10&sort=name
+
+### Buscar cliente pelo id
+GET {{baseUrl}}/clients/2
+
+### Cadastrar cliente -> 201 + Location (409 se o e-mail já existir)
+POST {{baseUrl}}/clients
+Content-Type: application/json
+
+{
+  "name": "Ana Souza",
+  "email": "ana@email.com",
+  "password": "senha12345"
+}
+
+### Atualizar cliente (a senha não muda por aqui)
+PUT {{baseUrl}}/clients/2
+Content-Type: application/json
+
+{
+  "name": "Ana Souza Lima",
+  "email": "ana@email.com"
+}
+
+### Mudar status (atualização parcial) e registrar no histórico
+PUT {{baseUrl}}/clients/2/status
+Content-Type: application/json
+
+{
+  "status": "INACTIVE",
+  "adminId": 1,
+  "notes": "Suspeita de fraude"
+}
+
+### Histórico de status do cliente
+GET {{baseUrl}}/clients/2/status-history
+
+### Excluir cliente -> 204 (apaga telefones e endereços; 400 se tiver pedidos, carrinho ou histórico)
+DELETE {{baseUrl}}/clients/2
+
+### ================= ENDEREÇOS =================
+
+### Listar endereços ativos do cliente
+GET {{baseUrl}}/clients/2/addresses
+
+### Buscar endereço
+GET {{baseUrl}}/clients/2/addresses/1
+
+### Cadastrar endereço
+POST {{baseUrl}}/clients/2/addresses
+Content-Type: application/json
+
+{
+  "street": "Av. Brasil",
+  "number": "100",
+  "complement": "Ap 12",
+  "neighborhood": "Centro",
+  "city": "Cascavel",
+  "state": "PR",
+  "zipCode": "85800-000"
+}
+
+### Atualizar endereço
+PUT {{baseUrl}}/clients/2/addresses/1
+Content-Type: application/json
+
+{
+  "street": "Av. Brasil",
+  "number": "100",
+  "complement": "Ap 15",
+  "neighborhood": "Centro",
+  "city": "Cascavel",
+  "state": "PR",
+  "zipCode": "85800-000"
+}
+
+### Excluir endereço -> 204 (se já foi usado em pedido, só é desativado)
+DELETE {{baseUrl}}/clients/2/addresses/1
+
+### ================= TELEFONES =================
+
+### Listar telefones do cliente
+GET {{baseUrl}}/clients/2/phones
+
+### Cadastrar telefone (só dígitos: DDD + número)
+POST {{baseUrl}}/clients/2/phones
+Content-Type: application/json
+
+{
+  "number": "45999998888"
+}
+
+### Atualizar telefone
+PUT {{baseUrl}}/clients/2/phones/1
+Content-Type: application/json
+
+{
+  "number": "4532221111"
+}
+
+### Excluir telefone
+DELETE {{baseUrl}}/clients/2/phones/1

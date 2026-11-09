@@ -25,4 +25,48 @@ public class OrderSnapshot {
     @CreationTimestamp
     @Column(nullable = false, updatable = false)
     private Instant snapshotDate;
+
+    public OrderSnapshot () {
+
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Orders getOrder() {
+        return order;
+    }
+
+    public void setOrder(Orders order) {
+        this.order = order;
+    }
+
+    public String getAddressSnapshot() {
+        return addressSnapshot;
+    }
+
+    public void setAddressSnapshot(String addressSnapshot) {
+        this.addressSnapshot = addressSnapshot;
+    }
+
+    public BigDecimal getTotalSnapshot() {
+        return totalSnapshot;
+    }
+
+    public void setTotalSnapshot(BigDecimal totalSnapshot) {
+        this.totalSnapshot = totalSnapshot;
+    }
+
+    public Instant getSnapshotDate() {
+        return snapshotDate;
+    }
+
+    public void setSnapshotDate(Instant snapshotDate) {
+        this.snapshotDate = snapshotDate;
+    }
 }

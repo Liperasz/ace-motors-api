@@ -1,0 +1,8 @@
+### Vendas por dia (from/to opcionais; padrão: do dia 1 do mês atual até hoje)
+GET {{baseUrl}}/reports/sales/by-day?from=2026-11-01&to=2026-11-30
+
+### Vendas por produto (unidades e valor, do mais vendido para o menos vendido)
+GET {{baseUrl}}/reports/sales/by-product?from=2026-11-01&to=2026-11-30
+
+### Vendas por categoria
+GET {{baseUrl}}/reports/sales/by-category

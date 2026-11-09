@@ -1,0 +1,26 @@
+### Avaliar um item de pedido (só pedido DELIVERED, uma vez por item) -> 201 + Location: /reviews/{id}
+POST {{baseUrl}}/order-items/1/review
+Content-Type: application/json
+
+{
+  "rating": 5,
+  "comment": "Carro incrível!"
+}
+
+### Avaliações de um produto (paginado) + média das notas
+GET {{baseUrl}}/products/1/reviews?page=0&size=10
+
+### Buscar avaliação
+GET {{baseUrl}}/reviews/1
+
+### Atualizar avaliação
+PUT {{baseUrl}}/reviews/1
+Content-Type: application/json
+
+{
+  "rating": 4,
+  "comment": "Muito bom, mas o consumo é alto"
+}
+
+### Excluir avaliação
+DELETE {{baseUrl}}/reviews/1

@@ -1,0 +1,16 @@
+### Listar favoritos do cliente (paginado)
+GET {{baseUrl}}/clients/2/favorites
+
+### Buscar favorito
+GET {{baseUrl}}/clients/2/favorites/1
+
+### Favoritar produto -> 201 (409 se já favoritado, 400 se o cliente estiver inativo)
+POST {{baseUrl}}/clients/2/favorites
+Content-Type: application/json
+
+{
+  "productId": 1
+}
+
+### Remover dos favoritos
+DELETE {{baseUrl}}/clients/2/favorites/1

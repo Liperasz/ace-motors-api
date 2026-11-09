@@ -1,0 +1,37 @@
+### Pagar com cartão digitado (número válido -> APPROVED e o pedido vira PAID; inválido -> DECLINED)
+POST {{baseUrl}}/orders/1/payments
+Content-Type: application/json
+
+{
+  "method": "CREDIT_CARD",
+  "cardNumber": "4111 1111 1111 1111"
+}
+
+### Pagar com cartão salvo do cliente
+POST {{baseUrl}}/orders/1/payments
+Content-Type: application/json
+
+{
+  "method": "CREDIT_CARD",
+  "savedPaymentMethodId": 1
+}
+
+### Pagar com PIX -> PENDING, com o código "copia e cola" fictício em transactionCode
+POST {{baseUrl}}/orders/2/payments
+Content-Type: application/json
+
+{
+  "method": "PIX"
+}
+
+### Simular o banco confirmando o PIX -> APPROVED e o pedido vira PAID
+POST {{baseUrl}}/payments/1/confirm
+
+### Tentativas de pagamento de um pedido
+GET {{baseUrl}}/orders/1/payments
+
+### Buscar pagamento
+GET {{baseUrl}}/payments/1
+
+### Histórico de status do pagamento
+GET {{baseUrl}}/payments/1/status-history

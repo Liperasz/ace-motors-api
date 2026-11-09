@@ -1,0 +1,26 @@
+### Ver carrinho (criado automaticamente no primeiro acesso)
+GET {{baseUrl}}/clients/2/cart
+
+### Adicionar produto -> 201 (se já estiver no carrinho, soma a quantidade)
+### 400 se o cliente estiver inativo ou o produto não estiver ACTIVE
+POST {{baseUrl}}/clients/2/cart/items
+Content-Type: application/json
+
+{
+  "productId": 1,
+  "quantity": 2
+}
+
+### Alterar quantidade de um item
+PUT {{baseUrl}}/clients/2/cart/items/1
+Content-Type: application/json
+
+{
+  "quantity": 4
+}
+
+### Remover item
+DELETE {{baseUrl}}/clients/2/cart/items/1
+
+### Esvaziar carrinho
+DELETE {{baseUrl}}/clients/2/cart

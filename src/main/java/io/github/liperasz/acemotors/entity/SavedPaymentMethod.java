@@ -29,4 +29,56 @@ public class SavedPaymentMethod {
     @CreationTimestamp
     @Column(nullable = false, updatable = false)
     private Instant createdAt;
+
+    public SavedPaymentMethod () {
+
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
+    public PaymentMethod getType() {
+        return type;
+    }
+
+    public void setType(PaymentMethod type) {
+        this.type = type;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public String getMaskedData() {
+        return maskedData;
+    }
+
+    public void setMaskedData(String maskedData) {
+        this.maskedData = maskedData;
+    }
+
+    public Instant getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Instant createdAt) {
+        this.createdAt = createdAt;
+    }
 }

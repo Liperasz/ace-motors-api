@@ -1,0 +1,46 @@
+### Listar categorias (paginado, filtro opcional por nome)
+GET {{baseUrl}}/categories?name=&page=0&size=10&sort=name
+
+### Buscar categoria pelo id
+GET {{baseUrl}}/categories/1
+
+### Criar categoria -> 201 + header Location
+POST {{baseUrl}}/categories
+Content-Type: application/json
+
+{
+  "name": "Hipercarros",
+  "description": "Carros de altíssimo desempenho"
+}
+
+### Atualizar categoria
+PUT {{baseUrl}}/categories/1
+Content-Type: application/json
+
+{
+  "name": "Hipercarros",
+  "description": "Descrição atualizada"
+}
+
+### Excluir categoria -> 204 (400 se ainda tiver produtos)
+DELETE {{baseUrl}}/categories/1
+
+### ERRO: validação -> 400 com um erro por campo
+POST {{baseUrl}}/categories
+Content-Type: application/json
+
+{
+  "name": ""
+}
+
+### ERRO: atributo desconhecido -> 400
+POST {{baseUrl}}/categories
+Content-Type: application/json
+
+{
+  "name": "Elétricos",
+  "foo": "bar"
+}
+
+### ERRO: id inexistente -> 404
+GET {{baseUrl}}/categories/999

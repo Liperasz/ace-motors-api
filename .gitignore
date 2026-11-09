@@ -33,4 +33,7 @@ build/
 .vscode/
 
 AGENTS.md
+CLAUDE.md
 .env
+### Imagens enviadas ###
+uploads/

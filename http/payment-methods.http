@@ -1,0 +1,36 @@
+### Listar formas de pagamento salvas do cliente
+GET {{baseUrl}}/clients/2/payment-methods
+
+### Buscar forma de pagamento
+GET {{baseUrl}}/clients/2/payment-methods/1
+
+### Salvar cartão (o número é validado e só "**** 1111" é guardado)
+POST {{baseUrl}}/clients/2/payment-methods
+Content-Type: application/json
+
+{
+  "type": "CREDIT_CARD",
+  "nickname": "Visa pessoal",
+  "data": "4111 1111 1111 1111"
+}
+
+### Salvar chave PIX (guardada mascarada)
+POST {{baseUrl}}/clients/2/payment-methods
+Content-Type: application/json
+
+{
+  "type": "PIX",
+  "nickname": "Chave e-mail",
+  "data": "ana@email.com"
+}
+
+### Alterar apelido
+PUT {{baseUrl}}/clients/2/payment-methods/1
+Content-Type: application/json
+
+{
+  "nickname": "Cartão principal"
+}
+
+### Excluir (400 se já foi usada em algum pagamento)
+DELETE {{baseUrl}}/clients/2/payment-methods/1

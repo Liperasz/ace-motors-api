@@ -1,0 +1,56 @@
+### Listar cupons com filtros opcionais (código, ativo, válido em uma data) e paginação
+GET {{baseUrl}}/coupons?code=ace&active=true&validOn=2026-12-01&page=0&size=10&sort=code
+
+### Buscar cupom pelo id
+GET {{baseUrl}}/coupons/1
+
+### Criar cupom percentual (datas em yyyy-MM-dd; o código é salvo em maiúsculas)
+POST {{baseUrl}}/coupons
+Content-Type: application/json
+
+{
+  "code": "ACE10",
+  "type": "PERCENTAGE",
+  "value": 10,
+  "startDate": "2026-11-01",
+  "expirationDate": "2026-12-31",
+  "maxUsage": 100
+}
+
+### Criar cupom de valor fixo
+POST {{baseUrl}}/coupons
+Content-Type: application/json
+
+{
+  "code": "MENOS500",
+  "type": "FIXED_VALUE",
+  "value": 500,
+  "startDate": "2026-11-01",
+  "expirationDate": "2026-12-31",
+  "maxUsage": 10
+}
+
+### Atualizar cupom
+PUT {{baseUrl}}/coupons/1
+Content-Type: application/json
+
+{
+  "code": "ACE10",
+  "type": "PERCENTAGE",
+  "value": 15,
+  "startDate": "2026-11-01",
+  "expirationDate": "2027-01-31",
+  "maxUsage": 200
+}
+
+### Desativar cupom (atualização parcial: corpo é true ou false)
+PUT {{baseUrl}}/coupons/1/active
+Content-Type: application/json
+
+false
+
+### Simular cupom em um subtotal -> desconto ou 400 com o motivo (expirado, desativado, esgotado...)
+GET {{baseUrl}}/coupons/validate?code=ACE10&subtotal=1000
+
+### Excluir cupom (400 se já foi usado em pedido; nesse caso, desativar)
+DELETE {{baseUrl}}/coupons/1

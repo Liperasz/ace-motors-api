@@ -17,7 +17,7 @@ public class ClientStatusHistory {
     @ManyToOne(fetch=FetchType.LAZY, optional = false)
     private Client client;
 
-    @ManyToOne(fetch=FetchType.LAZY, optional = false)
+    @ManyToOne(fetch=FetchType.LAZY)
     private Administrator changedBy;
 
     @Enumerated(EnumType.STRING)

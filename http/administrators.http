@@ -1,0 +1,27 @@
+### Listar administradores (paginado)
+GET {{baseUrl}}/administrators?page=0&size=10&sort=name
+
+### Buscar administrador pelo id
+GET {{baseUrl}}/administrators/1
+
+### Criar administrador -> 201 + Location (409 se o e-mail já existir)
+POST {{baseUrl}}/administrators
+Content-Type: application/json
+
+{
+  "name": "Felipe Admin",
+  "email": "admin@acemotors.com",
+  "password": "senha12345"
+}
+
+### Atualizar administrador (a senha não muda por aqui)
+PUT {{baseUrl}}/administrators/1
+Content-Type: application/json
+
+{
+  "name": "Felipe Fonseca",
+  "email": "felipe@acemotors.com"
+}
+
+### Excluir administrador -> 204 (400 se já tiver alterado algum status)
+DELETE {{baseUrl}}/administrators/1

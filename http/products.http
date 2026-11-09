@@ -1,0 +1,77 @@
+### Listar produtos com filtros (todos opcionais) e paginação
+GET {{baseUrl}}/products?name=ace&minPrice=500000&maxPrice=4000000&categoryId=1&status=ACTIVE&page=0&size=10&sort=price,desc
+
+### Listagem resumida para o catálogo (mesmos filtros)
+GET {{baseUrl}}/products?summary&page=0&size=10&sort=name
+
+### Buscar produto pelo id
+GET {{baseUrl}}/products/1
+
+### Criar produto -> 201 + Location (nasce ACTIVE)
+POST {{baseUrl}}/products
+Content-Type: application/json
+
+{
+  "name": "Ace Phantom X",
+  "description": "Hipercarro elétrico",
+  "price": 3500000.00,
+  "categoryIds": [1, 2]
+}
+
+### Atualizar produto
+PUT {{baseUrl}}/products/1
+Content-Type: application/json
+
+{
+  "name": "Ace Phantom X",
+  "description": "Hipercarro elétrico de 1500 cv",
+  "price": 3700000.00,
+  "categoryIds": [1]
+}
+
+### Mudar status (atualização parcial) e registrar no histórico
+PUT {{baseUrl}}/products/1/status
+Content-Type: application/json
+
+{
+  "status": "OUT_OF_STOCK",
+  "adminId": 1,
+  "notes": "Estoque zerado"
+}
+
+### Histórico de status do produto
+GET {{baseUrl}}/products/1/status-history
+
+### Enviar imagem (somente WebP)
+POST {{baseUrl}}/products/1/image
+Content-Type: multipart/form-data; boundary=boundary
+
+--boundary
+Content-Disposition: form-data; name="file"; filename="carro.webp"
+Content-Type: image/webp
+
+< ./carro.webp
+--boundary--
+
+### Excluir produto -> 204 (400 se tiver histórico, pedidos, carrinho ou favoritos)
+DELETE {{baseUrl}}/products/1
+
+### ERRO: validação -> 400
+POST {{baseUrl}}/products
+Content-Type: application/json
+
+{
+  "name": "",
+  "price": -5,
+  "categoryIds": []
+}
+
+### ERRO: categoria inexistente -> 400
+POST {{baseUrl}}/products
+Content-Type: application/json
+
+{
+  "name": "Ace Volt",
+  "price": 100000,
+  "categoryIds": [999]
+}
